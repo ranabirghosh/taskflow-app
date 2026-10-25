@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow — Simple Task Manager</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>TaskFlow</h1>
+      <p class="subtitle">Stay organized, stay productive</p>
+    </header>
+
+    <main class="app-main">
+      <form class="add-task-form" id="addTaskForm">
+        <input
+          type="text"
+          id="taskInput"
+          class="task-input"
+          placeholder="What needs to be done?"
+          autocomplete="off"
+        >
+        <button type="submit" class="add-btn">Add</button>
+      </form>
+
+      <p class="error-msg" id="errorMsg"></p>
+
+      <div class="task-list-container" id="taskListContainer">
+        <div class="empty-state" id="emptyState">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 11l3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+          <p>No tasks yet — add one above!</p>
+        </div>
+
+        <ul class="task-list" id="taskList"></ul>
+
+        <footer class="task-footer" id="taskFooter">
+          <span class="task-count" id="taskCount">0 items left</span>
+          <div class="filter-tabs" id="filterTabs">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+          </div>
+          <button class="clear-btn" id="clearCompleted">Clear completed</button>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="src/taskManager.js"></script>
+  <script src="src/ui.js"></script>
+</body>
+</html>

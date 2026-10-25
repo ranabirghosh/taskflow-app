@@ -1,0 +1,16 @@
+{
+  "name": "taskflow-demo",
+  "version": "1.0.0",
+  "description": "TaskFlow — a simple task manager frontend app used for Claude Code training demos",
+  "scripts": {
+    "test": "jest --verbose",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.js"]
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
