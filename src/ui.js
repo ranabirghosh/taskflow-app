@@ -9,6 +9,7 @@
   };
 
   var taskInput = document.getElementById('taskInput');
+  var dueDateInput = document.getElementById('dueDateInput');
   var addTaskForm = document.getElementById('addTaskForm');
   var taskList = document.getElementById('taskList');
   var taskCount = document.getElementById('taskCount');
@@ -22,7 +23,8 @@
     taskList.innerHTML = '';
     visible.forEach(function (task) {
       var li = document.createElement('li');
-      li.className = 'task-item' + (task.completed ? ' completed' : '');
+      li.className = 'task-item' + (task.completed ? ' completed' : '') +
+        (TM.isOverdue(task) ? ' overdue' : '');
       li.dataset.id = task.id;
 
       var checkbox = document.createElement('input');
@@ -42,6 +44,13 @@
       priorityBadge.className = 'priority-badge priority-' + task.priority;
       priorityBadge.textContent = task.priority;
 
+      var dueLabel = null;
+      if (task.dueDate) {
+        dueLabel = document.createElement('span');
+        dueLabel.className = 'due-date';
+        dueLabel.textContent = 'Due: ' + TM.formatDueDate(task.dueDate);
+      }
+
       var deleteBtn = document.createElement('button');
       deleteBtn.className = 'delete-btn';
       deleteBtn.textContent = '×';
@@ -54,6 +63,7 @@
       li.appendChild(checkbox);
       li.appendChild(label);
       li.appendChild(priorityBadge);
+      if (dueLabel) li.appendChild(dueLabel);
       li.appendChild(deleteBtn);
       taskList.appendChild(li);
     });
@@ -75,7 +85,7 @@
     var priority = prioritySelect ? prioritySelect.value : 'medium';
 
     try {
-      state.tasks = TM.addTask(state.tasks, text, priority);
+      state.tasks = TM.addTask(state.tasks, text, priority, dueDateInput.value);
       taskInput.value = '';
       taskInput.focus();
       render();
