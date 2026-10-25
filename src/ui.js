@@ -86,7 +86,8 @@
 
     try {
       state.tasks = TM.addTask(state.tasks, text, priority, dueDateInput.value);
-      // BUG: taskInput.value is not reset — text remains after adding
+      taskInput.value = '';
+      taskInput.focus();
       render();
     } catch (e) {
       var errorEl = document.getElementById('errorMsg');
